@@ -30,11 +30,11 @@ def generate_clean_data():
     :return:
     """
     labels = glob.glob("data/label/*.txt")
-    flacs = glob.glob("data/wav/*.flac")
+    wavs = glob.glob("data/wav/*.wav")
 
     labels = [os.path.splitext(os.path.basename(x))[0] for x in labels]
-    flacs = [os.path.splitext(os.path.basename(x))[0] for x in flacs]
-    to_remove = [x for x in labels if x not in flacs]
+    wavs = [os.path.splitext(os.path.basename(x))[0] for x in wavs]
+    to_remove = [x for x in labels if x not in wavs]
     for r in to_remove:
         os.system("rm data/label/{}.txt".format(r))
 
