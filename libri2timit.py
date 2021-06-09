@@ -3,10 +3,10 @@ from utils import get_name_from_path
 
 
 def generate_timit_phoneme_files():
-    transcripts = glob.glob("data/label/*.phonemes")
-    for transcript in transcripts:
-        name = get_name_from_path(transcript)
-        text = open(transcript).readlines()[0]
+    phonemes_files = glob.glob("data/label/*.phonemes")
+    for phoneme_file in phonemes_files:
+        name = get_name_from_path(phoneme_file)
+        text = open(phoneme_file).readlines()[0]
         # add h# as silence
         text = "h# " + text + " h#"
         phonemes = text.split()
@@ -16,10 +16,10 @@ def generate_timit_phoneme_files():
 
 
 def generate_timit_wrd_files():
-    transcripts = glob.glob("data/label/*.txt")
-    for transcript in transcripts:
-        name = get_name_from_path(transcript)
-        text = open(transcript).readlines()[0]
+    word_files = glob.glob("data/label/*.txt")
+    for word_file in word_files:
+        name = get_name_from_path(word_file)
+        text = open(word_file).readlines()[0]
         words = text.split()
         with open("data/label/{}.wrd".format(name), "w") as f:
             for i, wrd in enumerate(words):

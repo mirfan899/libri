@@ -1,7 +1,7 @@
 import glob
 import os
 import subprocess
-from utils import get_name_from_path, get_phonemes_only, generate_transcripts_data
+from utils import get_name_from_path, get_phonemes_only, generate_transcripts_data, get_phonemes_with_stress
 
 
 def generate_timit_data():
@@ -44,7 +44,8 @@ def generate_phoneme_files():
     for transcript in transcripts:
         name = get_name_from_path(transcript)
         text = open(transcript).readlines()[0]
-        phonemes = get_phonemes_only(text)
+        # phonemes = get_phonemes_only(text)
+        phonemes = get_phonemes_with_stress(text)
         with open("data/label/{}.phonemes".format(name), "w") as f:
             f.write(" ".join(phonemes).lower())
 

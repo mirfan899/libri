@@ -40,6 +40,20 @@ def get_phonemes_only(sentence):
     return phonemes_only_cleaned
 
 
+def get_phonemes_with_stress(sentence):
+    words = sentence.upper().split()
+
+    phonemes_stress = []
+    for word in words:
+        if word in DICTIONARY.keys():
+            phonemes_stress.append(DICTIONARY[word])
+        else:
+            predicted_phoneme = g2p(word)
+            phonemes_stress.append(" ".join(predicted_phoneme))
+
+    return phonemes_stress
+
+
 def get_name_from_path(path):
     return os.path.splitext(os.path.basename(path))[0]
 
